@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+     
+<title>Juice Jay Splash - Recipe</title>
+<link rel="shortcut icon" type="image/png" href="img/juice.png">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+   
+<style>
+           
+ @import url('https://fonts.googleapis.com/css?family=Molle:400i|Open+Sans+Condensed:300,700');
+      
+      html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body  {
+  font-family: 'Kaushan Script', cursive;
+  background: url("img/back.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  display: block;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.slider__nav-bar {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  bottom: -90px;
+  left: 50%;
+  transform: translateX( -50% );
+  border-radius: 90px;
+  text-align: center;
+  background: #dde3e6;
+  z-index: 100;
+}
+.slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY( -50% );
+  width: 64px;
+  height: 64px;
+  transition: 0.2s;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.8;
+}
+.slider__arrow:hover {
+  opacity: 1;
+}
+.slider__arrow_prev {
+  left: 16px;
+  width: 64px;
+  height: 64px;
+  background-image:url(img/arrow__left-white.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 64px;
+}
+.slider__arrow_next {
+  right: 16px;
+  width: 64px;
+  height: 64px;
+  background-image: url(img/arrow__right-white.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 64px;
+}
+.nav-control {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0.5;
+  width: 32px;
+  height: 32px;
+  transition: 0.2s;
+  cursor: pointer;
+  background-image: url(img/dot-black.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 26px 26px;
+  margin-top: 32px;
+  z-index: 3;
+}
+.nav-control:hover {
+  opacity: 0.8;
+}
+.nav-control_active {
+  opacity: 1;
+}
+.slider-list {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.slider-list::before {
+  content: '';
+  display: block;
+  padding-top: calc(9 / 16 * 100%);
+}
+.slider-list__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16vw;
+  color: #000;
+  will-change: transform;
+  z-index: 1;
+}
+.slider-list__item .back__element {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+}
+.slider-list__item .back__element img {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  top: 50%; left: 50%;
+  transform: translate( -50%, -50% );
+}
+.slider-list__item .main__element {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 3;
+}
+.slider-list__item .main__element img {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  top: 50%; left: 50%;
+  transform: translate( -50%, -50% );
+}
+.slider-list__item .front__element {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 4;
+  /* transform: scale(0); */
+}
+.slider-list__item .front__element img {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  top: 50%; left: 50%;
+  transform: translate( -50%, -50% );
+}
+.slider-list__item .title__element {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2;
+}
+.slider-list__item .title__element .title {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  top: 50%; left: 50%;
+  transform: rotate(-15deg) translate( -45%, -125% );
+  font-family: 'Kaushan Script', cursive;
+  color: #eef2f3;
+  text-align: center;
+}
+.slider-list__item .more__element {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 10;
+}
+.slider-list__item .more__element .content {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 768px;
+  height: auto;
+  margin: 64px auto;
+  padding: 0 32px;
+  color: white;
+  text-align: left;
+}
+.slider-list__item .more__element .content .headline {
+  position: relative;
+  display: block;
+  max-width: 240px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 38px;
+  line-height: 46px;
+}
+.slider-list__item .more__element .content .excerpt {
+  position: relative;
+  display: block;
+  max-width: 240px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 0 16px;
+}
+.slider-list__item .more__element .content .link {
+  position: relative;
+  display: block;
+  font-family: 'Kaushan Script', cursive;
+  width: 180px;
+  height: 48px;
+  border-radius: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.06);
+  transition: all 0.4s ease;
+}
+.slider-list__item .more__element .content .link .fill {
+  position: absolute;
+	background-image: linear-gradient(to right, #d43325, #f36e67);
+	background-size: 150% 150%;
+	height: 48px;
+	width: 180px;
+	border-radius: 24px;
+	margin: 0;
+	z-index: -1;
+  transition: all 0.4s ease;
+  -webkit-animation: gradient 3s ease infinite;
+	-moz-animation: gradient 3s ease infinite;
+	animation: gradient 3s ease infinite;
+}
+.slider-list__item .more__element .content .link .fill.fill-dark {
+  background-image: linear-gradient(to right, #252228, #848f9e);
+} 
+.slider-list__item .more__element .content .link a {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #dde3e6;
+  font-weight: 700;
+  text-align: center;
+  line-height: 48px;
+  text-decoration: none;
+  outline: 0px none;
+  outline: 0px;
+  z-index: 2;
+}
+.slider-list__item .more__element .content .link:hover {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.05), 0 15px 12px rgba(0,0,0,0.06);
+}
+.slider-list__item_active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  z-index: 2;
+}
+
+
+@media screen and (max-width: 640px) {
+
+  .slider-list__item .title__element .title {
+    font-size: 26vw;
+  }
+
+  .slider-list__item .more__element .content .excerpt {
+    display: none;
+  }
+
+  .slider-list__item .more__element .content .link {
+    margin-top: 16px;
+  }
+
+}
+
+@media screen and (max-width: 560px) {
+
+  .slider__nav-bar {
+    /* hide dots for mobile */
+    opacity: 0;
+    z-index: -1;
+  }
+
+}
+ 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+      
+</style>
+   
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-124048250-1');
+    </script>
+    
+
+</head>
+<body>
+
+   
+    <section class="page-wrapper" >
+
+      <div class="slider">
+        
+        <ul class="slider-list">
+          
+          <li class="slider-list__item  ">
+            <span class="back__element">
+              <img src="img/back_apple_002.png" />
+            </span>
+            <span class="main__element">
+              <img src="img/section_4_02.png" />
+            </span>
+            <span class="front__element">
+              <img src="img/front_apple_002.png" />
+            </span>
+            <span class="title__element">
+              <span class="title">green apple</span>
+            </span>
+            <span class="more__element">
+              <span class="content">
+                <span class="headline">Green Juice</span>
+                <span class="excerpt">Cucumber & Green apple Juices</span>
+                <span class="link">
+                  <div class="fill"></div>
+                  <a href="#">Open catalog</a>
+                </span>
+              </span>
+            </span>
+           </li>
+
+          <li class="slider-list__item">
+            <span class="back__element">
+              <img src="img/back_grapes_001.png" />
+            </span>
+            <span class="main__element">
+              <img src="img/section_4_03.png" />
+            </span>
+            <span class="front__element">
+              <img src="img/front_grapes_001.png" />
+            </span>
+            <span class="title__element">
+              <span class="title">grapes</span>
+            </span>
+            <span class="more__element">
+              <span class="content">
+                <span class="headline">Purple Juice</span>
+                <span class="excerpt">Graphes and Passion Fruits</span>
+                <span class="link">
+                  <div class="fill fill-dark"></div>
+                  <a href="#">Open catalog</a>
+                </span>
+              </span>
+            </span>
+           </li>
+
+           <li class="slider-list__item">
+            <span class="back__element">
+              <img src="img/back_strawberry_003.png" />
+            </span>
+            <span class="main__element">
+              <img src="img/section_4_01.png" />
+            </span>
+            <span class="front__element">
+              <img src="img/front_strawberry_003.png" />
+            </span>
+            <span class="title__element">
+              <span class="title">strawberry</span>
+            </span>
+            <span class="more__element">
+              <span class="content">
+                <span class="headline">Red Juice</span>
+                <span class="excerpt">Beetroot and Strawberry</span>
+                <span class="link">
+                    <div class="fill"></div>
+                  <a href="#">Open catalog</a>
+                </span>
+              </span>
+            </span>
+           </li>
+           
+        </ul>
+        
+        <div class="slider__nav-bar">
+          <a class="nav-control"></a>
+          <a class="nav-control"></a>
+          <a class="nav-control"></a>
+        </div>
+        
+        <div class="slider__controls">
+          <a class="slider__arrow slider__arrow_prev"></a>
+          <a class="slider__arrow slider__arrow_next"></a>
+        </div>
+
+      </div>      
+
+    </section>
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+    
+    <script src="/js/main.js"></script>
+
+  </body>
+</html>
